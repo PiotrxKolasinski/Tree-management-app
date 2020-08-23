@@ -1,0 +1,9 @@
+<div class="tree-management">
+  <div class="container">
+    <div *ngIf="getRootTreeNode() !== undefined" >
+      <div>
+        <app-tree-node-list [nodes]="[getRootTreeNode()]" [treeLevel]="0"></app-tree-node-list>
+      </div>
+    </div>
+  </div>
+</div>

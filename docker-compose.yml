@@ -1,0 +1,34 @@
+version: '3.1'
+services:
+  hsql-database:
+    image: blacklabelops/hsqldb
+    container_name: hsql-database
+    ports:
+      - 9001:9001
+    environment:
+      - HSQLDB_TRACE=true
+      - HSQLDB_REMOTE=true
+      - HSQLDB_DATABASE_NAME=hsqldb
+      - HSQLDB_DATABASE_ALIAS=b4mdb
+      - HSQLDB_USER=sa
+      - HSQLDB_PASSWORD=
+
+  frontend:
+    build: ./frontend/tree-management-web
+    container_name: frontend
+    ports:
+      - 4200:4200
+    depends_on:
+      - backend
+
+  backend:
+    build: .
+    container_name: backend
+    ports:
+      - 8080:8080
+    depends_on:
+      - hsql-database
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:hsqldb:hsql://hsql-database/b4mdb
+
+

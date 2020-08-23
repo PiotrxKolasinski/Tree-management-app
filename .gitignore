@@ -19,5 +19,11 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+/target
+/frontend/tree-management-web/node_modules
+/frontend/tree-management-web/e2e
+/frontend/tree-management-web/dist
+/frontend/tree-management-web/tmp
+/frontend/tree-management-web/out-tsc
+
 hs_err_pid*

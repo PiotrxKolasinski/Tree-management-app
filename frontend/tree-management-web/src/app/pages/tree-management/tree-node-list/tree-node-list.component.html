@@ -1,0 +1,8 @@
+<div class="tree-node-list">
+  <div *ngFor="let node of nodes; let i = index">
+    <app-tree-node-item [node]="node" [index]="i" [treeLevel]="treeLevel"></app-tree-node-item>
+    <div *ngIf="hasChildren(node)">
+      <app-tree-node-list [nodes]="node.children" [treeLevel]="treeLevel + 1"></app-tree-node-list>
+    </div>
+  </div>
+</div>
