@@ -33,10 +33,21 @@ java -jar ./target/Tree-management-app-0.0.1-SNAPSHOT.jar
 * Open shell, go to main project folder and run commands:
 ```
 cd ./frontend/tree-management-web
+npm install --save-dev @angular-devkit/build-angular (if need)
 ng serve
 ```
 [**Database**] <br /> 
-* Application need to install database HSQL manually.
+* Application need to install database HSQL manually. 
+e.g. 
+```
+docker run -d --name hsqldb \
+    -e "HSQLDB_DATABASE_NAME=hsqldb" \
+    -e "HSQLDB_DATABASE_ALIAS=b4mdb" \
+    -e "HSQLDB_USER=sa" \
+    -e "HSQLDB_PASSWORD=" \
+    -p 9001:9001 \
+    blacklabelops/hsqldb
+```
 
 ##### Ports
 * Frontend: 4200
