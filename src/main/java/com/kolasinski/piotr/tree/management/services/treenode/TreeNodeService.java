@@ -40,7 +40,7 @@ public class TreeNodeService {
     public TreeNode save(TreeNode node) {
         validRootTreeNode(node);
         TreeNode saved = saveWithChildren(node);
-        refreshLeavesAfterUpdate();
+        refreshLeaves();
         return saved;
     }
 
@@ -70,7 +70,7 @@ public class TreeNodeService {
     /**
      * Refresh every leaf in tree node in database.
      */
-    private void refreshLeavesAfterUpdate() {
+    private void refreshLeaves() {
         treeNodeRepository.findByParentOrderByParent(null).ifPresent(treeNode -> updateLeaves(treeNode, 0));
     }
 
@@ -122,11 +122,13 @@ public class TreeNodeService {
      * @param node updated tree node
      */
     private void refreshLeavesAfterUpdate(TreeNode node) {
-        if (!isParentNull(node)) {
+        if (isParentNull(node)) {
+            if (hasChildren(node)) refreshLeaves();
+        } else {
             if (!hasChildren(node)) {
                 treeNodeRepository.save((buildLeaf(node)));
             } else {
-                refreshLeavesAfterUpdate();
+                refreshLeaves();
             }
         }
     }
@@ -157,7 +159,7 @@ public class TreeNodeService {
     public void remove(Long id) {
         treeNodeRepository.deleteById(id);
         logger.info("Deleted TreeNode with id: " + id);
-        refreshLeavesAfterUpdate();
+        refreshLeaves();
     }
 
     /**
