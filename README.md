@@ -36,7 +36,7 @@ cd ./frontend/tree-management-web
 ng serve
 ```
 [**Database**] <br /> 
-* Application is configured for database HSQL.
+* Application need to install database HSQL manually.
 
 ##### Ports
 * Frontend: 4200
