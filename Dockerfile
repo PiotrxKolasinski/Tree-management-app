@@ -11,4 +11,4 @@ WORKDIR /app
 COPY --from=MAVEN_BUILD /build/target/Tree-management-app-0.0.1-SNAPSHOT.jar /app/
 
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/Tree-management-app-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","Tree-management-app-0.0.1-SNAPSHOT.jar"]

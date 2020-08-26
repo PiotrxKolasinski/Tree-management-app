@@ -1,8 +1,7 @@
-FROM node:alpine AS my-app-build
+FROM node:alpine AS node
 WORKDIR /app
 COPY . .
-RUN npm ci && npm run build
+RUN npm ci && npm run build --prod
 
 FROM nginx:alpine
-COPY --from=my-app-build /app/dist/app-to-run-inside-docker /usr/share/nginx/html
-EXPOSE 4200
+COPY --from=node /app/dist/tree-management-web /usr/share/nginx/html

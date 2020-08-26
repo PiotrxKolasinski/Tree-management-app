@@ -125,10 +125,10 @@ public class TreeNodeService {
         if (isParentNull(node)) {
             if (hasChildren(node)) refreshLeaves();
         } else {
-            if (!hasChildren(node)) {
-                treeNodeRepository.save((buildLeaf(node)));
-            } else {
+            if (hasChildren(node)) {
                 refreshLeaves();
+            } else {
+                treeNodeRepository.save((buildLeaf(node)));
             }
         }
     }
