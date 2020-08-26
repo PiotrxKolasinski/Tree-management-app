@@ -58,6 +58,7 @@ export class TreeNodeService {
     if (this.copiedTreeNode === undefined) return;
     let request = this.prepareTreeNodeCreation(this.copiedTreeNode);
     request.parentId = parentNode.id;
+    this.copiedTreeNode = undefined;
     return this.treeNodeApiService.save(request);
   }
 

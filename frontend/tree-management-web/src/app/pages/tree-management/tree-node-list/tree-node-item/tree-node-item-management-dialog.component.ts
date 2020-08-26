@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {TreeNodeService} from "../../../../services/tree-node.service";
 import {TreeNode} from "../../../../api/models/treeNode";
 
@@ -21,7 +21,7 @@ import {TreeNode} from "../../../../api/models/treeNode";
   `
 })
 export class TreeNodeItemManagementDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: TreeNode, private treeNodeService: TreeNodeService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: TreeNode, private dialogRef: MatDialogRef<TreeNodeItemManagementDialogComponent>, private treeNodeService: TreeNodeService) {
   }
 
   copyNodeStructure() {
@@ -30,6 +30,7 @@ export class TreeNodeItemManagementDialogComponent {
 
   cutNodeStructure() {
     this.treeNodeService.cutNodeStructure(this.data);
+    this.dialogRef.close();
   }
 
   pasteNodeStructure() {
